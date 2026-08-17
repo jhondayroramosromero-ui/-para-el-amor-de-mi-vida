@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para mi niña 💖</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --rosa-nube: #ffe4ec;
+    --rosa-suave: #ffc2d6;
+    --rosa-medio: #ff8fab;
+    --rosa-fuerte: #fb6f92;
+    --vino: #b3446c;
+    --crema: #fff5f7;
+    --blanco: #ffffff;
+  }
+
+  *{ box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(160deg, var(--rosa-nube) 0%, var(--rosa-suave) 45%, var(--rosa-medio) 100%);
+    color: var(--vino);
+    text-align: center;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  h1, h2, .titulo-script { font-family: 'Dancing Script', cursive; }
+
+  /* ---------- PANTALLA DE INICIO ---------- */
+  #inicio {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 50% 40%, var(--rosa-medio), var(--rosa-fuerte) 70%, var(--vino) 130%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 100;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+
+  #inicio.oculto { opacity: 0; visibility: hidden; pointer-events: none; }
+
+  .sobre { font-size: 3.2em; animation: flotar 2.4s ease-in-out infinite; margin-bottom: 6px; }
+
+  @keyframes flotar {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-14px) rotate(2deg); }
+  }
+
+  #inicio h1 { color: white; font-size: 2.6em; margin: 10px 0 4px; text-shadow: 0 4px 14px rgba(0,0,0,0.15); }
+
+  #inicio p.sub {
+    color: #fff0f3;
+    font-family: 'Quicksand', sans-serif;
+    letter-spacing: 1px;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    margin-bottom: 26px;
+  }
+
+  button {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  #inicio button {
+    padding: 14px 38px;
+    border-radius: 30px;
+    background: white;
+    color: var(--rosa-fuerte);
+    font-size: 1em;
+    letter-spacing: 0.5px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+  }
+
+  #inicio button:hover { transform: translateY(-3px) scale(1.04); }
+
+  /* ---------- CONTENEDOR PRINCIPAL ---------- */
+  .container { padding: 50px 18px 70px; max-width: 780px; margin: 0 auto; }
+
+  .encabezado h1 { font-size: 3.2em; color: var(--vino); margin-bottom: 6px; text-shadow: 0 2px 10px rgba(255,255,255,0.6); }
+
+  .encabezado .linea {
+    width: 90px; height: 3px; background: var(--rosa-fuerte); border-radius: 3px;
+    margin: 10px auto 22px; opacity: 0.6;
+  }
+
+  .mensaje-intro {
+    background: rgba(255,255,255,0.55);
+    border: 1px solid rgba(255,255,255,0.8);
+    backdrop-filter: blur(6px);
+    padding: 22px 24px;
+    border-radius: 22px;
+    line-height: 1.7;
+    font-size: 1.05em;
+    max-width: 560px;
+    margin: 0 auto 40px;
+    box-shadow: 0 10px 30px rgba(179,68,108,0.12);
+  }
+
+  /* ---------- CONTADOR ---------- */
+  .contador-caja {
+    background: linear-gradient(135deg, var(--rosa-fuerte), var(--vino));
+    color: white;
+    border-radius: 28px;
+    padding: 30px 20px 26px;
+    margin: 0 auto 46px;
+    max-width: 480px;
+    box-shadow: 0 14px 34px rgba(179,68,108,0.35);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contador-caja::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 15% 20%, rgba(255,255,255,0.18), transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(255,255,255,0.15), transparent 45%);
+    pointer-events: none;
+  }
+
+  .contador-eyebrow { text-transform: uppercase; letter-spacing: 2px; font-size: 0.72em; opacity: 0.85; margin: 0 0 6px; }
+  .contador-numero { font-size: 4em; font-weight: 700; line-height: 1; margin: 0; font-family: 'Dancing Script', cursive; }
+  .contador-label { font-size: 0.95em; margin: 4px 0 16px; opacity: 0.95; }
+  .contador-fecha { font-size: 0.78em; opacity: 0.8; border-top: 1px solid rgba(255,255,255,0.35); padding-top: 12px; margin-top: 4px; }
+
+  /* ---------- REPRODUCTOR DE MUSICA ---------- */
+  .reproductor {
+    background: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.85);
+    border-radius: 26px;
+    padding: 26px 22px;
+    max-width: 420px;
+    margin: 0 auto 46px;
+    box-shadow: 0 10px 30px rgba(179,68,108,0.15);
+  }
+
+  .reproductor-titulo { font-size: 1.6em; margin: 0 0 14px; color: var(--rosa-fuerte); }
+
+  .disco {
+    width: 90px; height: 90px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--rosa-fuerte), var(--vino));
+    margin: 0 auto 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2em;
+    box-shadow: 0 6px 18px rgba(179,68,108,0.35);
+    animation: girar 6s linear infinite;
+    animation-play-state: paused;
+  }
+
+  .disco.girando { animation-play-state: running; }
+
+  @keyframes girar { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+
+  #cancion-nombre { font-weight: 700; margin: 4px 0 0; font-size: 1.02em; }
+  #cancion-artista { font-size: 0.85em; opacity: 0.75; margin: 0 0 14px; }
+
+  .controles { display: flex; justify-content: center; align-items: center; gap: 16px; margin-bottom: 12px; }
+
+  .controles button {
+    background: var(--rosa-fuerte);
+    color: white;
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    font-size: 1em;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .controles button:hover { transform: scale(1.08); }
+
+  #btn-play { width: 52px; height: 52px; background: linear-gradient(135deg, var(--rosa-fuerte), var(--vino)); }
+
+  input[type="range"] { width: 100%; accent-color: var(--rosa-fuerte); margin: 6px 0; }
+
+  .fila-volumen { display: flex; align-items: center; gap: 8px; font-size: 0.85em; margin-top: 10px; opacity: 0.8; }
+
+  .lista-canciones {
+    margin-top: 16px;
+    text-align: left;
+    max-height: 130px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .cancion-item {
+    background: white;
+    border-radius: 12px;
+    padding: 8px 12px;
+    font-size: 0.85em;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 2px 6px rgba(179,68,108,0.08);
+  }
+
+  .cancion-item:hover { background: var(--rosa-nube); }
+  .cancion-item.activa { background: var(--rosa-fuerte); color: white; }
+
+  /* ---------- SECCIÓN BOTONES ---------- */
+  .seccion-titulo { font-size: 2em; margin-bottom: 6px; }
+  .seccion-sub { font-size: 0.85em; opacity: 0.75; margin-bottom: 26px; }
+
+  .grid-botones {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .grid-botones button {
+    padding: 14px 10px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.75);
+    color: var(--vino);
+    font-size: 0.95em;
+    box-shadow: 0 4px 14px rgba(179,68,108,0.12);
+    border: 1px solid rgba(255,255,255,0.9);
+  }
+
+  .grid-botones button:hover {
+    background: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(179,68,108,0.22);
+  }
+
+  .especial-btn {
+    display: block;
+    width: 100%;
+    margin: 30px auto 0;
+    padding: 18px 20px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, var(--rosa-fuerte), var(--vino));
+    color: white;
+    font-size: 1.05em;
+    font-weight: 700;
+    box-shadow: 0 10px 26px rgba(179,68,108,0.35);
+    letter-spacing: 0.3px;
+  }
+
+  .especial-btn:hover { transform: translateY(-3px) scale(1.01); }
+
+  /* ---------- OVERLAY DE LA CARTA ---------- */
+  #overlay-carta {
+    position: fixed;
+    inset: 0;
+    background: rgba(179,68,108,0.55);
+    backdrop-filter: blur(3px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    padding: 20px;
+  }
+
+  #overlay-carta.visible { display: flex; }
+
+  .carta {
+    background: var(--crema);
+    padding: 34px 28px;
+    border-radius: 26px;
+    max-width: 520px;
+    width: 100%;
+    line-height: 1.75;
+    font-size: 1.05em;
+    color: var(--vino);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    position: relative;
+    text-align: left;
+    animation: aparecer 0.4s ease;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  .carta.especial { background: linear-gradient(160deg, #fff, var(--rosa-nube)); border: 2px solid var(--rosa-medio); }
+
+  .carta-titulo { font-family: 'Dancing Script', cursive; font-size: 1.7em; color: var(--rosa-fuerte); margin: 0 0 14px; text-align: center; }
+
+  .carta-pista { text-align: center; font-size: 0.72em; opacity: 0.55; margin-top: 18px; }
+
+  .cerrar-carta {
+    position: absolute; top: 12px; right: 16px;
+    background: none; border: none; font-size: 1.3em;
+    color: var(--rosa-fuerte); cursor: pointer; padding: 4px;
+  }
+
+  @keyframes aparecer {
+    from { opacity: 0; transform: scale(0.85) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  /* ---------- RECORDATORIOS ---------- */
+  .recordatorios {
+    background: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.85);
+    border-radius: 26px;
+    padding: 26px 22px;
+    max-width: 580px;
+    margin: 46px auto 0;
+    box-shadow: 0 10px 30px rgba(179,68,108,0.15);
+    text-align: left;
+  }
+
+  .recordatorios-titulo { font-size: 1.6em; margin: 0 0 4px; color: var(--rosa-fuerte); text-align: center; }
+  .recordatorios-sub { font-size: 0.8em; opacity: 0.7; text-align: center; margin: 0 0 18px; }
+
+  .nuevo-recordatorio { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+
+  .nuevo-recordatorio input[type="text"] {
+    flex: 1 1 180px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    border: 1px solid var(--rosa-suave);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9em;
+  }
+
+  .nuevo-recordatorio input[type="date"] {
+    padding: 10px 10px;
+    border-radius: 14px;
+    border: 1px solid var(--rosa-suave);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.85em;
+  }
+
+  .nuevo-recordatorio button {
+    padding: 10px 18px;
+    border-radius: 14px;
+    background: var(--rosa-fuerte);
+    color: white;
+    font-weight: 700;
+  }
+
+  .nuevo-recordatorio button:hover { background: var(--vino); }
+
+  #lista-recordatorios { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+
+  .recordatorio-item {
+    display: flex; align-items: center; gap: 10px;
+    background: white; padding: 10px 14px; border-radius: 16px;
+    box-shadow: 0 3px 10px rgba(179,68,108,0.08);
+  }
+
+  .recordatorio-item input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--rosa-fuerte); flex-shrink: 0; }
+
+  .recordatorio-item.hecho .recordatorio-texto { text-decoration: line-through; opacity: 0.5; }
+
+  .recordatorio-texto { flex: 1; font-size: 0.92em; }
+  .recordatorio-fecha { font-size: 0.75em; opacity: 0.6; white-space: nowrap; }
+
+  .recordatorio-item .btn-eliminar { background: none; border: none; color: var(--rosa-fuerte); font-size: 1em; cursor: pointer; padding: 2px 6px; }
+
+  .recordatorio-vacio { text-align: center; opacity: 0.6; font-size: 0.85em; padding: 10px 0; }
+
+  footer { margin-top: 20px; font-size: 0.8em; opacity: 0.65; padding-bottom: 10px; }
+
+  /* ---------- DECORACIÓN FLOTANTE ---------- */
+  .flotante { position: fixed; top: -10px; z-index: 5; pointer-events: none; animation: caer linear infinite; }
+
+  @keyframes caer { to { transform: translateY(110vh) rotate(360deg); } }
+
+  @media (max-width: 480px) {
+    .contador-numero { font-size: 3em; }
+    .encabezado h1 { font-size: 2.4em; }
+  }
+</style>
+</head>
+
+<body>
+
+<div id="inicio">
+  <div class="sobre">💌</div>
+  <h1>Tengo algo para ti</h1>
+  <p class="sub">toca para abrir</p>
+  <button onclick="entrar()">Abrir 💖</button>
+</div>
+
+<div class="container">
+
+  <div class="encabezado">
+    <h1>Feliz Cumpleaños, mi niña 💖</h1>
+    <div class="linea"></div>
+  </div>
+
+  <p class="mensaje-intro">
+    Feliz cumpleaños, amor mío. El día de hoy hice esta página con el fin de que tengas mensajes para leer cuando sientas algo. Espero que te guste, la hice especialmente para ti, mi amor &lt;3
+  </p>
+
+  <!-- CONTADOR DE DÍAS -->
+  <div class="contador-caja">
+    <p class="contador-eyebrow">Juntos desde el 14 de febrero de 2026</p>
+    <p class="contador-numero" id="numero-dias">0</p>
+    <p class="contador-label">días queriéndote cada vez más</p>
+    <p class="contador-fecha" id="fecha-hoy"></p>
+  </div>
+
+  <!-- REPRODUCTOR DE MUSICA -->
+  <div class="reproductor">
+    <p class="reproductor-titulo">🎵 Nuestra playlist</p>
+    <div class="disco" id="disco">🎧</div>
+    <p id="cancion-nombre">Agrega tus canciones abajo en el código</p>
+    <p id="cancion-artista">—</p>
+
+    <div class="controles">
+      <button onclick="cancionAnterior()" title="Anterior">⏮</button>
+      <button onclick="togglePlay()" id="btn-play" title="Reproducir">▶</button>
+      <button onclick="cancionSiguiente()" title="Siguiente">⏭</button>
+    </div>
+
+    <input type="range" id="barra-progreso" value="0" min="0" max="100">
+
+    <div class="fila-volumen">
+      🔉
+      <input type="range" id="volumen" min="0" max="1" step="0.01" value="0.7">
+    </div>
+
+    <div class="lista-canciones" id="lista-canciones"></div>
+
+    <audio id="audio-player"></audio>
+  </div>
+
+  <h2 class="seccion-titulo">💌 Abre esto cuando…</h2>
+  <p class="seccion-sub">toca según cómo te sientas hoy — cada vez puede salir un mensaje distinto</p>
+
+  <div class="grid-botones">
+    <button onclick="abrirCarta('triste')">Triste 😢</button>
+    <button onclick="abrirCarta('feliz')">Feliz 😄</button>
+    <button onclick="abrirCarta('extranar')">Extrañes 💭</button>
+    <button onclick="abrirCarta('dormir')">Antes de dormir 🌙</button>
+    <button onclick="abrirCarta('celos')">Celos 😳</button>
+    <button onclick="abrirCarta('insegura')">Insegura 🥺</button>
+    <button onclick="abrirCarta('enojada')">Enojada 😠</button>
+    <button onclick="abrirCarta('cansada')">Cansada 😴</button>
+    <button onclick="abrirCarta('estres')">Estresada 😵</button>
+    <button onclick="abrirCarta('sola')">Sola 💔</button>
+    <button onclick="abrirCarta('ansiosa')">Ansiosa 💫</button>
+    <button onclick="abrirCarta('aburrida')">Aburrida 😶</button>
+    <button onclick="abrirCarta('orgullosa')">Orgullosa 😌</button>
+    <button onclick="abrirCarta('confundida')">Confundida 🤍</button>
+    <button onclick="abrirCarta('amor')">Amor 💖</button>
+    <button onclick="abrirCarta('nostalgia')">Nostalgia 🌙</button>
+  </div>
+
+  <button class="especial-btn" onclick="abrirCarta('especial')">
+    💌 Mensaje especial para que lo leas siempre :3
+  </button>
+
+  <!-- RECORDATORIOS -->
+  <div class="recordatorios">
+    <p class="recordatorios-titulo">📌 Mis recordatorios</p>
+    <p class="recordatorios-sub">para que no se te olvide nada, mi niña — esto se guarda solo en este navegador/celular</p>
+
+    <div class="nuevo-recordatorio">
+      <input type="text" id="input-recordatorio" placeholder="Escribe algo que no debes olvidar...">
+      <input type="date" id="input-fecha-recordatorio">
+      <button onclick="agregarRecordatorio()">Agregar</button>
+    </div>
+
+    <ul id="lista-recordatorios"></ul>
+  </div>
+
+  <footer>hecho con mucho amor para ti 💖</footer>
+</div>
+
+<!-- OVERLAY DONDE APARECE LA CARTA -->
+<div id="overlay-carta" onclick="cerrarSiFondo(event)">
+  <div class="carta" id="carta-contenedor">
+    <button class="cerrar-carta" onclick="cerrarCarta()">✕</button>
+    <p class="carta-titulo" id="carta-titulo"></p>
+    <p id="carta-texto"></p>
+    <p class="carta-pista" id="carta-pista"></p>
+  </div>
+</div>
+
+<script>
+  /* =========================================================
+     ✏️ AQUÍ AGREGAS O EDITAS LOS MENSAJES DE CADA BOTÓN ✏️
+     Cada sentimiento tiene un "titulo" (aparece arriba de la
+     carta) y una lista "frases": puedes poner tantas frases
+     como quieras. Cada vez que ella presione el botón, se
+     mostrará una frase al azar (sin repetir la misma dos
+     veces seguidas). Para agregar una frase nueva, solo copia
+     una línea con comillas y una coma, dentro del arreglo.
+     ========================================================= */
+  const mensajes = {
+
+    triste: {
+      titulo: "Si estás triste 😢",
+      frases: [
+        "Si estás triste miamor… ven acá, léeme con calma… no me gusta imaginarte así, pero si lo estás, quiero que sientas que no estás sola ni un segundo.<br><br>Yo sé que a veces la vida pesa, que hay días donde todo se siente raro o difícil… pero tú eres demasiado fuerte, más de lo que crees.<br><br>Y si en algún momento sientes que no puedes más… apóyate en mí, aunque sea con este mensaje. Porque yo siempre voy a estar para ti, en las buenas y en las malas… siempre 💖"
+        // 👉 agrega aquí más frases para "triste"
+      ]
+    },
+
+    feliz: {
+      titulo: "Si estás feliz 😄",
+      frases: [
+        "Si estás feliz… uff, eso ya me alegra el día completo. Porque tu felicidad también es la mía, literalmente.<br><br>Me encanta imaginarte sonriendo, riéndote, siendo tú… porque no sabes lo hermosa que te ves cuando estás así.<br><br>Ojalá pudiera estar contigo en este momento, abrazarte y compartir esa felicidad contigo… pero mientras tanto, me conformo con saber que estás bien 💕"
+        // 👉 agrega aquí más frases para "feliz"
+      ]
+    },
+
+    extranar: {
+      titulo: "Si me extrañas 💭",
+      frases: [
+        "Si me extrañas… quiero que sepas que yo también lo hago todo el tiempo.<br><br>A veces me pongo a pensar en ti de la nada, en nuestras conversaciones, en todo… y me doy cuenta de lo mucho que significas para mí.<br><br>Pero ¿sabes qué es lo bonito? que extrañarnos solo demuestra que lo nuestro es real.<br><br>Y créeme… cada día que pasa es un día menos para estar juntos 💖"
+        // 👉 agrega aquí más frases para "extrañar"
+      ]
+    },
+
+    dormir: {
+      titulo: "Antes de dormir 🌙",
+      frases: [
+        "Antes de dormir mi niña… solo quiero que te relajes y descanses.<br><br>Deja todos los problemas a un lado por un momento, cierra los ojos y respira.<br><br>Ojalá pudiera darte las buenas noches en persona, abrazarte y decirte que todo está bien… pero mientras tanto, te dejo esto con todo mi amor.<br><br>Duerme bonito… y sueña conmigo si quieres 💕"
+        // 👉 agrega aquí más frases para "antes de dormir"
+      ]
+    },
+
+    celos: {
+      titulo: "Si sientes celos 😳",
+      frases: [
+        "Si sientes celos… ven y léeme bien esto.<br><br>No hay nadie que te reemplace, ni que se acerque a lo que eres para mí. Tú eres única, especial, diferente… y eso no lo tiene nadie más.<br><br>No compares, no dudes… porque yo te elegí a ti, y te sigo eligiendo todos los días 💖"
+        // 👉 agrega aquí más frases para "celos"
+      ]
+    },
+
+    insegura: {
+      titulo: "Si te sientes insegura 🥺",
+      frases: [
+        "Si te sientes insegura… quiero que veas esto como si te lo estuviera diciendo frente a frente.<br><br>Eres suficiente, eres hermosa, eres valiosa… y no necesitas ser nada más.<br><br>A veces tú no te ves como yo te veo… pero si pudieras verte con mis ojos, entenderías lo increíble que eres.<br><br>Nunca dudes de ti 💕"
+        // 👉 agrega aquí más frases para "insegura"
+      ]
+    },
+
+    enojada: {
+      titulo: "Si estás enojada 😠",
+      frases: [
+        "Si estás enojada… está bien, todos tenemos momentos así.<br><br>Pero incluso en esos momentos, quiero que recuerdes que aquí estoy. No me voy a ir, no voy a desaparecer… sigo siendo el mismo que te ama.<br><br>Y cuando se te pase, aquí voy a estar para ti como siempre 💖"
+        // 👉 agrega aquí más frases para "enojada"
+      ]
+    },
+
+    cansada: {
+      titulo: "Si estás cansada 😴",
+      frases: [
+        "Si estás cansada… descansa, en serio.<br><br>No tienes que ser fuerte todo el tiempo. También está bien parar, respirar y simplemente existir.<br><br>Te mereces paz, tranquilidad… y todo lo bonito 💕"
+        // 👉 agrega aquí más frases para "cansada"
+      ]
+    },
+
+    estres: {
+      titulo: "Si estás estresada 😵",
+      frases: [
+        "Si estás estresada… respira profundo un momento.<br><br>No todo tiene que resolverse hoy, no todo tiene que salir perfecto.<br><br>Haz lo que puedas, y lo demás vendrá después. Y recuerda… no estás sola en esto 💖"
+        // 👉 agrega aquí más frases para "estrés"
+      ]
+    },
+
+    sola: {
+      titulo: "Si te sientes sola 💔",
+      frases: [
+        "Si te sientes sola… léeme bien.<br><br>No lo estás. Me tienes a mí, aunque no esté físicamente contigo en este momento.<br><br>Estoy aquí, pensando en ti, queriéndote… y eso no cambia 💕"
+        // 👉 agrega aquí más frases para "sola"
+      ]
+    },
+
+    ansiosa: {
+      titulo: "Si estás ansiosa 💫",
+      frases: [
+        "Si estás ansiosa… tranquila, poco a poco.<br><br>Respira, cálmate… no dejes que los pensamientos te ganen.<br><br>Todo pasa, todo se acomoda… y yo estoy contigo en cada momento 💖"
+        // 👉 agrega aquí más frases para "ansiosa"
+      ]
+    },
+
+    aburrida: {
+      titulo: "Si estás aburrida 😶",
+      frases: [
+        "Si estás aburrida… ojalá pudiera estar contigo ahora mismo.<br><br>Te haría reír, molestarte un rato, hablar contigo de cualquier cosa… solo para verte sonreír.<br><br>Porque eso es lo que más me gusta 💕"
+        // 👉 agrega aquí más frases para "aburrida"
+      ]
+    },
+
+    orgullosa: {
+      titulo: "Si te sientes orgullosa 😌",
+      frases: [
+        "Si te sientes orgullosa… yo lo estoy aún más de ti.<br><br>Por todo lo que haces, por cómo eres… de verdad admiro muchas cosas de ti.<br><br>Sigue así, que vas increíble 💖"
+        // 👉 agrega aquí más frases para "orgullosa"
+      ]
+    },
+
+    confundida: {
+      titulo: "Si estás confundida 🤍",
+      frases: [
+        "Si estás confundida… tranquila.<br><br>No tienes que tener todo claro ahora mismo. A veces la vida es así, y está bien.<br><br>Lo importante es que sigas, paso a paso… y aquí estoy contigo 💕"
+        // 👉 agrega aquí más frases para "confundida"
+      ]
+    },
+
+    amor: {
+      titulo: "Si piensas en amor 💖",
+      frases: [
+        "Si estás pensando en amor… pues aquí tienes el mío.<br><br>Te amo de una forma que no sé explicar bien, pero lo siento en todo.<br><br>En lo que digo, en lo que hago, en cómo pienso en ti… en todo 💖"
+        // 👉 agrega aquí más frases para "amor"
+      ]
+    },
+
+    nostalgia: {
+      titulo: "Si sientes nostalgia 🌙",
+      frases: [
+        "Si sientes nostalgia… recuerda todo lo bonito que tenemos.<br><br>Cada momento, cada risa, cada palabra… todo eso sigue existiendo en nosotros.<br><br>Y aún nos quedan muchas cosas más por vivir 💕"
+        // 👉 agrega aquí más frases para "nostalgia"
+      ]
+    },
+
+    especial: {
+      titulo: "💌 Para siempre",
+      frases: [
+        "Y bueno miamor, con este botón que ves acá es para decirte que tú, mi vida y mi niña hermosa, siempre me gusta recordarte que tú eres y siempre serás la mejor decisión de toda mi vida &lt;3"
+        // 👉 agrega aquí más frases para el mensaje especial
+      ]
+    }
+
+  };
+
+  // Guarda cuál fue la última frase mostrada por sentimiento, para no repetirla dos veces seguidas
+  const ultimaFrase = {};
+
+  function entrar() {
+    document.getElementById("inicio").classList.add("oculto");
+  }
+
+  function abrirCarta(id) {
+    const data = mensajes[id];
+    if (!data) return;
+
+    let indice = Math.floor(Math.random() * data.frases.length);
+    if (data.frases.length > 1 && indice === ultimaFrase[id]) {
+      indice = (indice + 1) % data.frases.length;
+    }
+    ultimaFrase[id] = indice;
+
+    const contenedor = document.getElementById("carta-contenedor");
+    contenedor.classList.toggle("especial", id === "especial");
+
+    document.getElementById("carta-titulo").textContent = data.titulo;
+    document.getElementById("carta-texto").innerHTML = data.frases[indice];
+    document.getElementById("carta-pista").textContent =
+      data.frases.length > 1 ? `mensaje ${indice + 1} de ${data.frases.length} — vuelve a tocar el botón para ver otro` : "";
+
+    document.getElementById("overlay-carta").classList.add("visible");
+  }
+
+  function cerrarCarta() {
+    document.getElementById("overlay-carta").classList.remove("visible");
+  }
+
+  function cerrarSiFondo(evento) {
+    if (evento.target.id === "overlay-carta") cerrarCarta();
+  }
+
+  // ---------- CONTADOR DE DÍAS JUNTOS ----------
+  function actualizarContador() {
+    const inicio = new Date(2026, 1, 14); // 14 de febrero de 2026
+    const ahora = new Date();
+    const inicioSinHora = new Date(inicio.getFullYear(), inicio.getMonth(), inicio.getDate());
+    const hoySinHora = new Date(ahora.getFullYear(), ahora.getMonth(), ahora.getDate());
+    const diffMs = hoySinHora - inicioSinHora;
+    const dias = Math.max(0, Math.round(diffMs / (1000 * 60 * 60 * 24)));
+
+    document.getElementById("numero-dias").textContent = dias;
+
+    const opciones = { day: "numeric", month: "long", year: "numeric" };
+    document.getElementById("fecha-hoy").textContent =
+      "hoy es " + ahora.toLocaleDateString("es-ES", opciones);
+  }
+
+  actualizarContador();
+
+  /* =========================================================
+     🎵 AQUÍ AGREGAS LAS CANCIONES DEL REPRODUCTOR 🎵
+     Copia el mismo formato y pega el link directo a un
+     archivo .mp3 que tú mismo subas a algún hosting (por
+     ejemplo tu propio servidor, GitHub, o un enlace directo
+     de descarga). No pegues links de Spotify/YouTube porque
+     esos no funcionan aquí, tiene que ser un archivo de audio
+     real (.mp3) al que el navegador pueda acceder directo.
+     ========================================================= */
+  const playlist = [
+    { titulo: "Nombre de la canción 1", artista: "Artista 1", src: "URL_DE_TU_CANCION_1.mp3" },
+    { titulo: "Nombre de la canción 2", artista: "Artista 2", src: "URL_DE_TU_CANCION_2.mp3" },
+    { titulo: "Nombre de la canción 3", artista: "Artista 3", src: "URL_DE_TU_CANCION_3.mp3" }
+    // 👉 agrega aquí más canciones, copiando el mismo formato de arriba
+  ];
+
+  let cancionActual = 0;
+  let sonando = false;
+  const audio = document.getElementById("audio-player");
+  const disco = document.getElementById("disco");
+  const btnPlay = document.getElementById("btn-play");
+  const barraProgreso = document.getElementById("barra-progreso");
+  const controlVolumen = document.getElementById("volumen");
+
+  function renderListaCanciones() {
+    const cont = document.getElementById("lista-canciones");
+    cont.innerHTML = "";
+    playlist.forEach((cancion, i) => {
+      const item = document.createElement("div");
+      item.className = "cancion-item" + (i === cancionActual ? " activa" : "");
+      item.innerHTML = `<span>${cancion.titulo}</span><span>${cancion.artista}</span>`;
+      item.onclick = () => cargarCancion(i, true);
+      cont.appendChild(item);
+    });
+  }
+
+  function cargarCancion(i, autoplay) {
+    if (playlist.length === 0) return;
+    cancionActual = (i + playlist.length) % playlist.length;
+    const cancion = playlist[cancionActual];
+    audio.src = cancion.src;
+    document.getElementById("cancion-nombre").textContent = cancion.titulo;
+    document.getElementById("cancion-artista").textContent = cancion.artista;
+    renderListaCanciones();
+    if (autoplay) {
+      audio.play().catch(() => {});
+      sonando = true;
+      actualizarBotonPlay();
+    }
+  }
+
+  function togglePlay() {
+    if (!audio.src) cargarCancion(0, false);
+    if (sonando) {
+      audio.pause();
+    } else {
+      audio.play().catch(() => {});
+    }
+    sonando = !sonando;
+    actualizarBotonPlay();
+  }
+
+  function actualizarBotonPlay() {
+    btnPlay.textContent = sonando ? "⏸" : "▶";
+    disco.classList.toggle("girando", sonando);
+  }
+
+  function cancionSiguiente() { cargarCancion(cancionActual + 1, true); }
+  function cancionAnterior() { cargarCancion(cancionActual - 1, true); }
+
+  audio.addEventListener("timeupdate", () => {
+    if (audio.duration) {
+      barraProgreso.value = (audio.currentTime / audio.duration) * 100;
+    }
+  });
+
+  barraProgreso.addEventListener("input", () => {
+    if (audio.duration) {
+      audio.currentTime = (barraProgreso.value / 100) * audio.duration;
+    }
+  });
+
+  audio.addEventListener("ended", cancionSiguiente);
+
+  controlVolumen.addEventListener("input", () => {
+    audio.volume = controlVolumen.value;
+  });
+  audio.volume = controlVolumen.value;
+
+  renderListaCanciones();
+  document.getElementById("cancion-nombre").textContent = playlist.length
+    ? playlist[0].titulo
+    : "Agrega tus canciones en el código";
+  document.getElementById("cancion-artista").textContent = playlist.length ? playlist[0].artista : "—";
+
+  // ---------- RECORDATORIOS (se guardan en este navegador) ----------
+  const CLAVE_RECORDATORIOS = "recordatorios-para-mi-nina";
+
+  function leerRecordatorios() {
+    try {
+      return JSON.parse(localStorage.getItem(CLAVE_RECORDATORIOS)) || [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function guardarRecordatorios(lista) {
+    localStorage.setItem(CLAVE_RECORDATORIOS, JSON.stringify(lista));
+  }
+
+  function renderRecordatorios() {
+    const lista = leerRecordatorios();
+    const cont = document.getElementById("lista-recordatorios");
+    cont.innerHTML = "";
+
+    if (lista.length === 0) {
+      cont.innerHTML = '<li class="recordatorio-vacio">No tienes recordatorios todavía 🌸</li>';
+      return;
+    }
+
+    lista
+      .map((r, i) => ({ ...r, indiceOriginal: i }))
+      .sort((a, b) => (a.fecha || "9999").localeCompare(b.fecha || "9999"))
+      .forEach(r => {
+        const li = document.createElement("li");
+        li.className = "recordatorio-item" + (r.hecho ? " hecho" : "");
+        li.innerHTML = `
+          <input type="checkbox" ${r.hecho ? "checked" : ""} onchange="marcarHecho(${r.indiceOriginal})">
+          <span class="recordatorio-texto">${r.texto}</span>
+          ${r.fecha ? `<span class="recordatorio-fecha">${formatearFecha(r.fecha)}</span>` : ""}
+          <button class="btn-eliminar" onclick="eliminarRecordatorio(${r.indiceOriginal})" title="Eliminar">✕</button>
+        `;
+        cont.appendChild(li);
+      });
+  }
+
+  function formatearFecha(fechaISO) {
+    const [a, m, d] = fechaISO.split("-");
+    return `${d}/${m}/${a}`;
+  }
+
+  function agregarRecordatorio() {
+    const inputTexto = document.getElementById("input-recordatorio");
+    const inputFecha = document.getElementById("input-fecha-recordatorio");
+    const texto = inputTexto.value.trim();
+    if (!texto) return;
+
+    const lista = leerRecordatorios();
+    lista.push({ texto, fecha: inputFecha.value || "", hecho: false });
+    guardarRecordatorios(lista);
+
+    inputTexto.value = "";
+    inputFecha.value = "";
+    renderRecordatorios();
+  }
+
+  function marcarHecho(indice) {
+    const lista = leerRecordatorios();
+    if (lista[indice]) {
+      lista[indice].hecho = !lista[indice].hecho;
+      guardarRecordatorios(lista);
+      renderRecordatorios();
+    }
+  }
+
+  function eliminarRecordatorio(indice) {
+    const lista = leerRecordatorios();
+    lista.splice(indice, 1);
+    guardarRecordatorios(lista);
+    renderRecordatorios();
+  }
+
+  document.getElementById("input-recordatorio").addEventListener("keydown", e => {
+    if (e.key === "Enter") agregarRecordatorio();
+  });
+
+  renderRecordatorios();
+
+  // ---------- DECORACIÓN FLOTANTE ----------
+  const simbolos = ["💖", "🌸", "✨", "💕", "🌷"];
+
+  function crearElementos() {
+    const el = document.createElement("div");
+    el.classList.add("flotante");
+    el.innerHTML = simbolos[Math.floor(Math.random() * simbolos.length)];
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.fontSize = (Math.random() * 14 + 14) + "px";
+    el.style.opacity = Math.random() * 0.5 + 0.5;
+    el.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 6500);
+  }
+
+  setInterval(crearElementos, 400);
+</script>
+
+</body>
+</html>
